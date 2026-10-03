@@ -2,6 +2,7 @@ package live.switchly.api.controller;
 
 import live.switchly.api.dto.CreateFlagRequest;
 import live.switchly.api.dto.UpdateFlagStateRequest;
+import live.switchly.api.dto.UpdateFlagDescriptionRequest;
 import live.switchly.api.model.Flag;
 import live.switchly.api.service.FlagService;
 import jakarta.validation.Valid;
@@ -31,7 +32,7 @@ public class FlagController {
     @PostMapping("/projects/{projectId}/flags")
     @ResponseStatus(HttpStatus.CREATED)
     public Flag create(@PathVariable UUID projectId, @Valid @RequestBody CreateFlagRequest request) {
-        return flagService.create(projectId, request.key(), request.name());
+        return flagService.create(projectId, request.key(), request.name() , request.description());
     }
 
     @GetMapping("/projects/{projectId}/flags")
@@ -47,5 +48,10 @@ public class FlagController {
     @PutMapping("/flags/{flagId}/state")
     public Flag setState(@PathVariable UUID flagId, @Valid @RequestBody UpdateFlagStateRequest request) {
         return flagService.setEnabled(flagId, request.enabled());
+    }
+
+    @PutMapping("/flags/{flagId}/description")
+    public Flag updateDescription(@PathVariable UUID flagId, @Valid @RequestBody UpdateFlagDescriptionRequest request) {
+        return flagService.updateDescription(flagId, request.description());
     }
 }
