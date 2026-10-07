@@ -22,7 +22,7 @@ Everything lives in memory for now. No database yet.
 | `GET` | `/api/v1/projects/{projectId}/flags` | List a project's flags |
 | `GET` | `/api/v1/flags/{flagId}` | Get one flag |
 | `PUT` | `/api/v1/flags/{flagId}/state` | Turn a flag on or off |
-| `PATCH` | `/api/v1/flags/{flagId}/description` | Update a flag's description |
+| `PUT` | `/api/v1/flags/{flagId}/description` | Update a flag's description |
 
 ---
 
@@ -149,7 +149,7 @@ If the flag does not exist, the existing `NotFoundException` is used and the API
 A new endpoint was added:
 
 ```http
-PATCH /api/v1/flags/{flagId}/description
+PUT /api/v1/flags/{flagId}/description
 ```
 
 The endpoint accepts the flag ID as a path parameter and the new description in the request body.
@@ -165,7 +165,7 @@ The endpoint accepts the flag ID as a path parameter and the new description in 
 ### Example
 
 ```bash
-curl -i -X PATCH \
+curl -i -X PUT \
   http://localhost:8080/api/v1/flags/PASTE_FLAG_ID/description \
   -H "Content-Type: application/json" \
   -d '{"description":"Enable the new checkout experience"}'
@@ -200,7 +200,7 @@ The flag is initially created with its default description value.
 Then update the description:
 
 ```bash
-curl -X PATCH \
+curl -X PUT \
   http://localhost:8080/api/v1/flags/PASTE_FLAG_ID/description \
   -H "Content-Type: application/json" \
   -d '{"description":"Enables the redesigned checkout experience"}'
@@ -295,7 +295,7 @@ PUT /api/v1/flags/{flagId}/state
 ### Update flag description
 
 ```http
-PATCH /api/v1/flags/{flagId}/description
+PUT /api/v1/flags/{flagId}/description
 ```
 
 The new description functionality does not replace or change the existing state API.
@@ -309,7 +309,7 @@ The existing global exception handling is reused.
 ### Flag does not exist
 
 ```http
-PATCH /api/v1/flags/{unknownFlagId}/description
+PUT /api/v1/flags/{unknownFlagId}/description
 ```
 
 Returns:
@@ -412,7 +412,7 @@ api/src/main/java/live/switchly/api/
 
 | Method | Endpoint | Purpose |
 | ------ | -------- | ------- |
-| `PATCH` | `/api/v1/flags/{flagId}/description` | Update the description of a flag |
+| `PUT` | `/api/v1/flags/{flagId}/description` | Update the description of a flag |
 
 ### Example request
 

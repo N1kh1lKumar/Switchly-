@@ -7,14 +7,7 @@ import live.switchly.api.model.Flag;
 import live.switchly.api.service.FlagService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -54,4 +47,12 @@ public class FlagController {
     public Flag updateDescription(@PathVariable UUID flagId, @Valid @RequestBody UpdateFlagDescriptionRequest request) {
         return flagService.updateDescription(flagId, request.description());
     }
+
+
+    @DeleteMapping("/flags/{flagId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable UUID flagId) {
+        flagService.deleteById(flagId);
+    }
+
 }

@@ -53,4 +53,9 @@ public class FlagService {
         flag.setDescription(description);
         return flagRepository.save(flag);
     }
+
+    public void deleteById(UUID id) {
+        getById(id);
+        flagRepository.deleteById(id);
+    }
 }

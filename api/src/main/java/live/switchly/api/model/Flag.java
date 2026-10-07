@@ -29,7 +29,7 @@ public class Flag {
     public String getName() { return name; }
     public String getDescription() { return description; }
     public boolean isEnabled() { return enabled; }
-    public String setDescription(String description) { this.description = description; return description; }
+    public void setDescription(String description) { this.description = description; }
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
 
 }
