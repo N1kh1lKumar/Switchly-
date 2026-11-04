@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: switchly-postgres
+    environment:
+      POSTGRES_DB: switchly
+      POSTGRES_USER: switchly
+      POSTGRES_PASSWORD: switchly
+    ports:
+      - "15432:5432"
+    volumes:
+      - switchly-db-data:/var/lib/postgresql/data
+
+volumes:
+  switchly-db-data:
