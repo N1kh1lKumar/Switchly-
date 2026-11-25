@@ -1,16 +1,12 @@
 package live.switchly.api.repository;
 
 import live.switchly.api.model.Flag;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-public interface FlagRepository {
-
-    Flag save(Flag flag);
-
-    Optional<Flag> findById(UUID id);
+public interface FlagRepository extends JpaRepository<Flag, UUID> {
 
     List<Flag> findByProjectId(UUID projectId);
 
